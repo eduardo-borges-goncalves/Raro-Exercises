@@ -1,13 +1,11 @@
-// 1. As rosas não falam
-
-const desafio1asRosasNaoFalam1 = () => {
-
+async function desafio1asRosasNaoFalam2 () {
+    
     const geraIntervaloAleatório = (): number => Math.floor(Math.random() * 3 * 1000);
 
-    const queixoMeAsRosas = (): Promise<void> => {
+    const queixoMeAsRosas = ()  => {
         return new Promise(resolve => 
-            setTimeout(() => { 
-                resolve( console.log('Queixo-me às rosas'))
+                setTimeout(() => { 
+                    resolve( console.log('Queixo-me às rosas'))
             }, geraIntervaloAleatório())
         );
     };
@@ -45,13 +43,12 @@ const desafio1asRosasNaoFalam1 = () => {
     };
   
     // Tentativa de cantar a música. 
-    queixoMeAsRosas()
-        .then( () => masQueBobagem() )
-        .then( () => asRosasNaoFalam() )
-        .then( () => simplesmenteAsRosasExalam() )
-        .then( () => oPerfumeQueRoubamDeTi() )
-        .catch( error => console.log(error) )
+
+    await queixoMeAsRosas()
+    await masQueBobagem()
+    await asRosasNaoFalam()
+    await simplesmenteAsRosasExalam()
+    await oPerfumeQueRoubamDeTi()  
 }
   
-desafio1asRosasNaoFalam1();
-
+desafio1asRosasNaoFalam2();
