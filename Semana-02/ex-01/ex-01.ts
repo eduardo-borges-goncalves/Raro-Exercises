@@ -73,9 +73,9 @@ console.log(pick(alunos, ["nome", "nota"] ))
 type myObj2 = Record< string, number >
 
 const orderBy = (array:myObj[], chaves:string[]) => {
-  
+  chaves.reverse()
   let result = pick(array, chaves)
-  chaves.reverse().forEach(chave => {
+  chaves.forEach(chave => {
       result.sort( (a,b) => {
             if (a[chave] < b[chave] ) return -1;
             b[chave] < a[chave] ? 1: 0;
