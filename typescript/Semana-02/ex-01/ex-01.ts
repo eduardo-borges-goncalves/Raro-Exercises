@@ -13,11 +13,9 @@ const ingredientes = [
 ];
 
 const fazUmBigMac = (ingredientes: string[]): string => {
-
-  let result:string = `${ ingredientes.reduce((previousValue, currentValue) => `${previousValue}, ${currentValue}`) }.`
-
-  return result
-};
+  return `${ ingredientes.reduce((previousValue, currentValue) => 
+    `${previousValue}, ${currentValue}`) }.`
+}
 
 console.log(fazUmBigMac(ingredientes));
 
@@ -27,20 +25,12 @@ console.log(fazUmBigMac(ingredientes));
 const meses = [
   'jan', 'mar', 'mar', 'abr', 'jun', 'jul', 'set', 'out', 'dez',
 ];
-
-function correctMonths (months:string[]) {
- 
-  months.splice(1,0, "fev") 
-  months.splice(5,0, "mai") 
-  months.splice(8,0, "ago")
-  months.splice(11,0, "nov")
-
-  let uniqueMonths = new Set() 
-  months.forEach(month => {uniqueMonths.add(month)})
-  return uniqueMonths
-}
-
-console.log(correctMonths(meses))
+  meses.splice(1,0, "fev") 
+  meses.splice(2,1)
+  meses.splice(4,0, "mai") 
+  meses.splice(7,0, "ago")
+  meses.splice(10,0, "nov")
+console.log(meses)
 
 // 3 - Implementar o método de pick que receba um parâmetro do tipo array de 
 // objetos, e outro parâmetro do tipo array de strings. Este método deverá retornar
@@ -60,13 +50,11 @@ const alunos = [
 const pick = (array:myObj[], chaves:string[] ) => {
 
     let result:myObj[] = []
-    
     array.map(object => {
         let resultObject:myObj = {}
         chaves.forEach( chave => resultObject[chave] = object[chave] )
         result.push(resultObject) 
     })
-
     return result
 }
 
@@ -79,22 +67,27 @@ console.log(pick(alunos, ["nome", "nota"] ))
 // Importante: O array original deve ser mantido intacto. Abaixo, segue um exemplo
 // do funcionamento esperado:
 
-type myObj2 = Record< string, number >
-
-const orderBy = (array:myObj[], elem1:string, elem2:string) => {
-
-    let result:myObj2[] = pick(array, [(elem2), elem1] );
-
-    result.sort( ( a , b ) => {
-        if ( a[elem1] > b[elem1] ) return 1
-        if ( b[elem1] > a[elem1]) return -1
-        else return 0
-    })
-
-    console.log(result)
+const order = (array:myObj[], chaves:string[]) =>{
+  let result:myObj[] = pick(array, chaves)
+  chaves.forEach(chave => {
+      result.sort( (a,b) => {
+            if (a[chave] < b[chave] ) return -1;
+            b[chave] < a[chave] ? 1: 0;
+      })
+  })
+  return result
 }
 
-orderBy(alunos, 'nota', 'nome')
+const orderBy = (array:myObj[], chaves:string[]) => {
+
+  if (typeof array[0][chaves[0]] === 'number') {
+      chaves.reverse()
+      return order(array, chaves)
+  }
+  return order(array, chaves)
+}
+
+console.log(orderBy(alunos, [ "nota","nome"]))
 
 // 5 - Na computação, estudamos algumas estruturas de dados importantes, muitas 
 // delas baseadas em arrays. Aqui em destaque, dois tipos diferentes, as filas 
@@ -110,32 +103,17 @@ orderBy(alunos, 'nota', 'nome')
 function fila(elemento:number) {
   const fila:number[] = [];
 
-  const adicionar = (elemento:number) => {
-        fila.push(elemento)
-      };
-
-  const remover = () => {
-        let removed = fila.splice(0, 1)
-        return removed[0]
-  };
+  const adicionar = (elemento:number) => fila.push(elemento)
+  const remover = () =>  fila.shift()
 
   return { adicionar, remover };
 }
 
-
-
 function pilha(elemento:number) {
   const pilha:number[] = [];
 
-  const adicionar = (elemento:number) => {
-    pilha.push(elemento)
-  };
-
-  const remover = () => {
-    let i = pilha.length-1
-    let removed = pilha.splice(i, 1)
-    return removed[0]
-  };
+  const adicionar = (elemento:number) => pilha.push(elemento)
+  const remover = () => pilha.pop()
 
   return { adicionar, remover };
 }
@@ -171,14 +149,10 @@ const usuarios = [
 const usuariosAtivos:myObj[] = [] // ???
 const usuariosInativos:myObj[] = [] // ???
 
-const userFilter = (users:myObj[], attribute:any) => {
-
-    users.forEach( user => {
-      user[attribute] ? usuariosAtivos.push(user): usuariosInativos.push(user);
-    })
+for (let user of usuarios) {
+    if (user.ativo) usuariosAtivos.push(user)
+    else usuariosInativos.push(user)
 }
-
-userFilter(usuarios, "ativo")
 
 console.log(usuariosInativos)
 console.log(usuariosAtivos)
