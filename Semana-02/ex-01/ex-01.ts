@@ -13,7 +13,8 @@ const ingredientes = [
 ];
 
 const fazUmBigMac = (ingredientes: string[]): string => {
-  return `${ ingredientes.reduce((previousValue, currentValue) => `${previousValue}, ${currentValue}`) }.`
+  return `${ ingredientes.reduce((previousValue, currentValue) => 
+    `${previousValue}, ${currentValue}`) }.`
 }
 
 console.log(fazUmBigMac(ingredientes));
@@ -24,22 +25,20 @@ console.log(fazUmBigMac(ingredientes));
 const meses = [
   'jan', 'mar', 'mar', 'abr', 'jun', 'jul', 'set', 'out', 'dez',
 ];
- 
   meses.splice(1,0, "fev") 
   meses.splice(2,1)
   meses.splice(4,0, "mai") 
   meses.splice(7,0, "ago")
   meses.splice(10,0, "nov")
-
 console.log(meses)
 
-// // 3 - Implementar o método de pick que receba um parâmetro do tipo array de 
-// // objetos, e outro parâmetro do tipo array de strings. Este método deverá retornar
-// // todos os itens do array original, porém, mantendo somente os atributos com os
-// // nomes passados no segundo atributo. Importante: o array original deve ser 
-// // mantido intacto. Abaixo, segue um exemplo do funcionamento esperado:
+// 3 - Implementar o método de pick que receba um parâmetro do tipo array de 
+// objetos, e outro parâmetro do tipo array de strings. Este método deverá retornar
+// todos os itens do array original, porém, mantendo somente os atributos com os
+// nomes passados no segundo atributo. Importante: o array original deve ser 
+// mantido intacto. Abaixo, segue um exemplo do funcionamento esperado:
 
- type myObj = Record< string, unknown >
+type myObj = Record< string, unknown >
 
 const alunos = [
     { nome: 'João', nota: 7.3, bolsista: false },
@@ -51,13 +50,11 @@ const alunos = [
 const pick = (array:myObj[], chaves:string[] ) => {
 
     let result:myObj[] = []
-    
     array.map(object => {
         let resultObject:myObj = {}
         chaves.forEach( chave => resultObject[chave] = object[chave] )
         result.push(resultObject) 
     })
-
     return result
 }
 
@@ -70,11 +67,8 @@ console.log(pick(alunos, ["nome", "nota"] ))
 // Importante: O array original deve ser mantido intacto. Abaixo, segue um exemplo
 // do funcionamento esperado:
 
-type myObj2 = Record< string, number >
-
-const orderBy = (array:myObj[], chaves:string[]) => {
-  chaves.reverse()
-  let result = pick(array, chaves)
+const order = (array:myObj[], chaves:string[]) =>{
+  let result:myObj[] = pick(array, chaves)
   chaves.forEach(chave => {
       result.sort( (a,b) => {
             if (a[chave] < b[chave] ) return -1;
@@ -84,7 +78,16 @@ const orderBy = (array:myObj[], chaves:string[]) => {
   return result
 }
 
-console.log(orderBy(alunos, ['nota', 'nome']))
+const orderBy = (array:myObj[], chaves:string[]) => {
+
+  if (typeof array[0][chaves[0]] === 'number') {
+      chaves.reverse()
+      return order(array, chaves)
+  }
+  return order(array, chaves)
+}
+
+console.log(orderBy(alunos, [ "nota","nome"]))
 
 // 5 - Na computação, estudamos algumas estruturas de dados importantes, muitas 
 // delas baseadas em arrays. Aqui em destaque, dois tipos diferentes, as filas 
@@ -146,18 +149,10 @@ const usuarios = [
 const usuariosAtivos:myObj[] = [] // ???
 const usuariosInativos:myObj[] = [] // ???
 
-const userFilter = (users:myObj[]) => {
-
-  while (usuariosAtivos.length) usuariosAtivos.pop()
-  while (usuariosInativos.length) usuariosInativos.pop()
-  
-  users.filter( user => {
-    user.ativo ? usuariosAtivos.push(user): usuariosInativos.push(user);
-  })
+for (let user of usuarios) {
+    if (user.ativo) usuariosAtivos.push(user)
+    else usuariosInativos.push(user)
 }
-
-userFilter(usuarios)
-userFilter(usuarios)
 
 console.log(usuariosInativos)
 console.log(usuariosAtivos)
