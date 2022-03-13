@@ -11,8 +11,9 @@ var ingredientes = [
     'pão com gergelim'
 ];
 var fazUmBigMac = function (ingredientes) {
-    var result = "".concat(ingredientes.reduce(function (previousValue, currentValue) { return "".concat(previousValue, ", ").concat(currentValue); }), ".");
-    return result;
+    return "".concat(ingredientes.reduce(function (previousValue, currentValue) {
+        return "".concat(previousValue, ", ").concat(currentValue);
+    }), ".");
 };
 console.log(fazUmBigMac(ingredientes));
 // 2- A lista de meses abaixo está incompleta (e incorreta!). Utilize os métodos
@@ -20,16 +21,12 @@ console.log(fazUmBigMac(ingredientes));
 var meses = [
     'jan', 'mar', 'mar', 'abr', 'jun', 'jul', 'set', 'out', 'dez',
 ];
-function correctMonths(months) {
-    months.splice(1, 0, "fev");
-    months.splice(5, 0, "mai");
-    months.splice(8, 0, "ago");
-    months.splice(11, 0, "nov");
-    var uniqueMonths = new Set();
-    months.forEach(function (month) { uniqueMonths.add(month); });
-    return uniqueMonths;
-}
-console.log(correctMonths(meses));
+meses.splice(1, 0, "fev");
+meses.splice(2, 1);
+meses.splice(4, 0, "mai");
+meses.splice(7, 0, "ago");
+meses.splice(10, 0, "nov");
+console.log(meses);
 var alunos = [
     { nome: 'João', nota: 7.3, bolsista: false },
     { nome: 'Maria', nota: 9.2, bolsista: true },
@@ -46,19 +43,31 @@ var pick = function (array, chaves) {
     return result;
 };
 console.log(pick(alunos, ["nome", "nota"]));
-var orderBy = function (array, elem1, elem2) {
-    var result = pick(array, [(elem2), elem1]);
-    result.sort(function (a, b) {
-        if (a[elem1] > b[elem1])
-            return 1;
-        if (b[elem1] > a[elem1])
-            return -1;
-        else
-            return 0;
+// 4 - ainda com o mesmo exemplo dos alunos, implementar agora um método chamado
+// orderBy. Esse método deverá receber um parâmetro do tipo array de objetos, 
+// e outro parâmetro, um array de strings. O método deverá retornar um novo array,
+// com os objetos ordenados de acordo com o critério do array de strings. 
+// Importante: O array original deve ser mantido intacto. Abaixo, segue um exemplo
+// do funcionamento esperado:
+var order = function (array, chaves) {
+    var result = pick(array, chaves);
+    chaves.forEach(function (chave) {
+        result.sort(function (a, b) {
+            if (a[chave] < b[chave])
+                return -1;
+            b[chave] < a[chave] ? 1 : 0;
+        });
     });
-    console.log(result);
+    return result;
 };
-orderBy(alunos, 'nota', 'nome');
+var orderBy = function (array, chaves) {
+    if (typeof array[0][chaves[0]] === 'number') {
+        chaves.reverse();
+        return order(array, chaves);
+    }
+    return order(array, chaves);
+};
+console.log(orderBy(alunos, ["nota", "nome"]));
 // 5 - Na computação, estudamos algumas estruturas de dados importantes, muitas 
 // delas baseadas em arrays. Aqui em destaque, dois tipos diferentes, as filas 
 // e as pilhas. As filas são arrays que estabelecem a política de FIFO 
@@ -71,25 +80,14 @@ orderBy(alunos, 'nota', 'nome');
 // para cada estrutura.
 function fila(elemento) {
     var fila = [];
-    var adicionar = function (elemento) {
-        fila.push(elemento);
-    };
-    var remover = function () {
-        var removed = fila.splice(0, 1);
-        return removed[0];
-    };
+    var adicionar = function (elemento) { return fila.push(elemento); };
+    var remover = function () { return fila.shift(); };
     return { adicionar: adicionar, remover: remover };
 }
 function pilha(elemento) {
     var pilha = [];
-    var adicionar = function (elemento) {
-        pilha.push(elemento);
-    };
-    var remover = function () {
-        var i = pilha.length - 1;
-        var removed = pilha.splice(i, 1);
-        return removed[0];
-    };
+    var adicionar = function (elemento) { return pilha.push(elemento); };
+    var remover = function () { return pilha.pop(); };
     return { adicionar: adicionar, remover: remover };
 }
 var fila1 = fila();
@@ -116,11 +114,12 @@ var usuarios = [
 ];
 var usuariosAtivos = []; // ???
 var usuariosInativos = []; // ???
-var userFilter = function (users, attribute) {
-    users.forEach(function (user) {
-        user[attribute] ? usuariosAtivos.push(user) : usuariosInativos.push(user);
-    });
-};
-userFilter(usuarios, "ativo");
+for (var _i = 0, usuarios_1 = usuarios; _i < usuarios_1.length; _i++) {
+    var user = usuarios_1[_i];
+    if (user.ativo)
+        usuariosAtivos.push(user);
+    else
+        usuariosInativos.push(user);
+}
 console.log(usuariosInativos);
 console.log(usuariosAtivos);

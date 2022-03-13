@@ -1,0 +1,86 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: rgb(187, 185, 190);
+    color: rgb(18, 10, 26);
+    padding: 50px 10px;
+}
+
+header, main {
+    max-width: 800px;
+}
+#container {
+    background-color: rgb(236, 233, 238);
+    box-shadow: 2px 6px 10px 2px rgba(0, 0, 0, 0.281);  
+    border-radius: 5px;
+    padding: 40px;
+}
+section {
+    max-width: 600px;
+    min-width: 350px;
+}
+
+ul {
+    margin-left: 40px;
+    color: rgb(48, 14, 128); 
+}
+
+h1, h2, h3 {
+    margin: 25px 40px;
+    color: rgb(62, 9, 112);
+    text-shadow: 1px 1px 2px  rgba(8, 2, 2, 0.151);
+
+}
+h1 {
+    color: rgb(50, 14, 61);
+    text-shadow: none;
+    margin-bottom: 0px;
+   
+}
+a {
+    text-decoration: none;
+    color: rgb(62, 9, 112); 
+}
+a:hover {
+    color: rgb(44, 218, 218); 
+}
+
+#name-img {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+img {
+    border-radius: 50%;
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.199);
+    margin-bottom: 20px;
+}
+
+main p{
+    text-indent: 40px;
+}
+
+.periodo {
+    margin-bottom: 10px;
+    color: rgb(46, 8, 82); 
+    color: rgb(9, 8, 82); 
+    font-weight: bold;
+}
+#paragrafo {
+    margin-bottom: 10px;
+}
+
+#hard-skill-ul {
+    font-weight: 600;
+    color: rgb(48, 14, 128); 
+}
