@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda</title>
+    <link rel="stylesheet" href="style.css">
+
+
+</head>
+<body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@16.12.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script type="text/babel">  
+        const rootElement = document.getElementById('root')
+
+        const Page = ({children}) => (
+            <div className="page"> 
+                {children}    
+            </div>
+        )
+        const Header = ({title}) => (
+            <header>
+                <h1>{title}</h1>
+                <button>Search</button>
+            </header>
+        )
+        const Card = ({img, name, profession}) => (
+            <div className="card">
+                <div className="card-profile">
+                    <img src={img} alt=""/>
+                    <div> 
+                        <h2>{name}</h2>
+                        <span>{profession}</span>
+                    </div>
+                </div>
+                <div className="card-button">
+                    <button>Call</button>
+                    <button>Send e-mail</button>
+                </div>
+            </div>
+        )
+        const Result = ({resultado}) => (
+            <div className="result">
+                <p>We found {resultado} contacts</p>
+            </div>
+        )
+        
+        const element = (
+
+            <Page>
+              <Header title="CONTACTS"/>
+              <main>
+                <Card name="João" profession="Pedreiro" img="p1.jpg"/>
+                <Card name="Maria" profession="Professora"img="p2.jpeg"/>
+                <Card name="Romilda" profession="Astrologa" img="p3.png"/>
+                <Card name="Márcio" profession="Cozinheiro" img="p4.jpeg"/>
+                <Result resultado="23"/>
+              </main>
+            </Page>
+        )
+
+        ReactDOM.render(element, rootElement);
+    </script>
+</body>
+</html>
