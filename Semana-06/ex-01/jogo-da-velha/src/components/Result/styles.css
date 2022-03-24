@@ -3,6 +3,8 @@ span {
     font-weight: bold;
     color: rgb(13, 190, 13);
     margin-top: 10px;  
+    margin: 0 auto;
+    text-align: center;
 }
 
 .newGame {
@@ -11,3 +13,19 @@ span {
     flex-direction: column;
     align-items: center;
 }
+
+.newGameBut {
+    background-color: rgb(17, 184, 230);
+    padding: 10px 12px;
+    border-radius: 4px;
+    margin-top: 40px;
+    font-weight: bold;
+    color: white;
+    border: 1px solid rgba(49, 108, 124, 0.205);
+    transition: filter 0.2s;
+}
+
+.newGameBut:hover {
+    filter: brightness(0.9);
+}
+  

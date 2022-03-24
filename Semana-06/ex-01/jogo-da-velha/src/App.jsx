@@ -5,57 +5,67 @@ import { Game } from './components/Game';
 
 let counter = 1  
 let winner = "" 
+let result = ""
 
 function App() {
   let objGame = { g1: "", g2: "", g3: "", g4: "", g5: "", g6: "", g7: "", g8: "", g9: ""}
 
-  const [objGameState, setObjGameState] = useState(objGame)
+  const [gameState, setGameState] = useState(objGame)
   const [classNameResult, setClassNameResult] = useState("areaHidden")
-
+  
   let won = 
-    objGameState.g1 === objGameState.g2 && objGameState.g1 === objGameState.g3 && ((objGameState.g1 && objGameState.g2 && objGameState.g3) !== "") ||
-    objGameState.g4 === objGameState.g5 && objGameState.g4 === objGameState.g6 && ((objGameState.g4 && objGameState.g5 && objGameState.g6) !== "") ||
-    objGameState.g7 === objGameState.g8 && objGameState.g7 === objGameState.g9 && ((objGameState.g7 && objGameState.g8 && objGameState.g9) !== "") ||
-    objGameState.g1 === objGameState.g4 && objGameState.g1 === objGameState.g7 && ((objGameState.g1 && objGameState.g4 && objGameState.g7) !== "") ||
-    objGameState.g2 === objGameState.g5 && objGameState.g2 === objGameState.g8 && ((objGameState.g2 && objGameState.g5 && objGameState.g8) !== "") ||
-    objGameState.g3 === objGameState.g6 && objGameState.g3 === objGameState.g9 && ((objGameState.g3 && objGameState.g6 && objGameState.g9) !== "") ||
-    objGameState.g1 === objGameState.g5 && objGameState.g1 === objGameState.g9 && ((objGameState.g1 && objGameState.g5 && objGameState.g9) !== "") ||
-    objGameState.g3 === objGameState.g5 && objGameState.g3 === objGameState.g7 && ((objGameState.g3 && objGameState.g5 && objGameState.g7) !== "")
+    gameState.g1 === gameState.g2 && gameState.g1 === gameState.g3 && ((gameState.g1 && gameState.g2 && gameState.g3) !== "") ||
+    gameState.g4 === gameState.g5 && gameState.g4 === gameState.g6 && ((gameState.g4 && gameState.g5 && gameState.g6) !== "") ||
+    gameState.g7 === gameState.g8 && gameState.g7 === gameState.g9 && ((gameState.g7 && gameState.g8 && gameState.g9) !== "") ||
+    gameState.g1 === gameState.g4 && gameState.g1 === gameState.g7 && ((gameState.g1 && gameState.g4 && gameState.g7) !== "") ||
+    gameState.g2 === gameState.g5 && gameState.g2 === gameState.g8 && ((gameState.g2 && gameState.g5 && gameState.g8) !== "") ||
+    gameState.g3 === gameState.g6 && gameState.g3 === gameState.g9 && ((gameState.g3 && gameState.g6 && gameState.g9) !== "") ||
+    gameState.g1 === gameState.g5 && gameState.g1 === gameState.g9 && ((gameState.g1 && gameState.g5 && gameState.g9) !== "") ||
+    gameState.g3 === gameState.g5 && gameState.g3 === gameState.g7 && ((gameState.g3 && gameState.g5 && gameState.g7) !== "")
+
+  let tie = gameState.g1 !=="" && gameState.g2 !=="" && gameState.g3 !=="" && gameState.g4 !=="" && 
+            gameState.g5 !=="" && gameState.g6 !=="" && gameState.g7 !=="" && gameState.g8 !=="" && 
+            gameState.g9 !=="" && won === false
 
   function xOrBow (event) {
     let key = event.target.align
-    if (counter % 2 === 0 && objGameState[key] === "" && !won) {
-      setObjGameState({ ...objGameState, [key]: "O" })
+    if (counter % 2 === 0 && gameState[key] === "" && !won) {
+      setGameState({ ...gameState, [key]: "O" })
       counter += 1;
-    } else if ( objGameState[key] === "" && !won ) {
-      setObjGameState({ ...objGameState, [key]: "X" })
+    } else if ( gameState[key] === "" && !won ) {
+      setGameState({ ...gameState, [key]: "X" })
       counter += 1
     }
   }
 
   function newGameFunction () {
-     setObjGameState(objGame)
+     setGameState(objGame)
      setClassNameResult('areaHidden')
   }
 
-  useEffect(()=> {
+  useEffect(() => {
     counter % 2 !== 0? winner = "Bola": winner= "X"
     won && setClassNameResult('newGame')
     counter = 1
-    console.log(counter)
   },[won])
 
-  return (
-    <div className="App">
+  useEffect(() => {
+    tie ? result = "Ihhh, empatou! Tente outra vez!": result = "Venceu!";
+    winner = ""
+    tie && setClassNameResult('newGame')
+    counter = 1
+  }, [tie])
 
+  return (
       <div className="container">
-          <Game xOrBow={xOrBow} objGameState={objGameState} />
+          <Game xOrBow={xOrBow}
+           gameState={gameState}/>
           <Result 
             classNameResult={classNameResult} 
             winner={winner}
+            result={result}
             newGameFunction={newGameFunction} />
       </div>
-    </div>
   );
 }
 
