@@ -1,0 +1,13 @@
+span {
+    font-size: 30px;
+    font-weight: bold;
+    color: rgb(13, 190, 13);
+    margin-top: 10px;  
+}
+
+.newGame {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

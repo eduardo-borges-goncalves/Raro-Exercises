@@ -24,6 +24,7 @@
   margin: 0;
   font-size: 20px;
   font-weight: bold;
+  border: none;
 }
 
 .game p {
@@ -75,6 +76,8 @@
   margin-top: 40px;
   font-weight: bold;
   color: white;
+  border: 1px solid rgba(49, 108, 124, 0.205);
+  transition: filter 0.2s;
 }
 
 .newGameBut:hover {
@@ -84,3 +87,8 @@
 .gameRow {
   display: flex;
 }
+
+.areaHidden {
+  display: none;
+}
+
