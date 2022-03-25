@@ -1,9 +1,23 @@
-.bowP {
-    color:rgb(47, 83, 243);
-    font-weight: bold;
+.game {
+    position: relative;
 }
 
-.xP {
-    color:rgb(243, 93, 47);
-    font-weight: bold;
+.line {
+    width: 240px;
+    border: 1px solid rgb(124, 118, 118);
+}
+
+.column1, .column2 {
+    position: absolute;
+    top: 0px;
+    height: 240px;
+    border: 1px solid  rgb(124, 118, 118);
+}
+
+.column1 {
+    right: 80px;
+}
+
+.column2 {
+    right: 160px;
 }

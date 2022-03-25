@@ -1,9 +1,9 @@
 span {
-    font-size: 30px;
+    font-size: 24px;
     font-weight: bold;
-    color: rgb(13, 190, 13);
-    margin-top: 10px;  
+    color:  #14d1c1;
     margin: 0 auto;
+    margin-top: 10px;  
     text-align: center;
 }
 
@@ -16,9 +16,10 @@ span {
 
 .newGameBut {
     background-color: rgb(17, 184, 230);
+    background-color: rgb(42, 5, 207);
     padding: 10px 12px;
     border-radius: 4px;
-    margin-top: 40px;
+    margin-top: 30px;
     font-weight: bold;
     color: white;
     border: 1px solid rgba(49, 108, 124, 0.205);
@@ -26,6 +27,6 @@ span {
 }
 
 .newGameBut:hover {
-    filter: brightness(0.9);
+    filter: brightness(1.5);
 }
   
