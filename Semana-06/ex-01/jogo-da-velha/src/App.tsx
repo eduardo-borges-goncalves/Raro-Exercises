@@ -4,17 +4,17 @@ import { Game } from './components/Game';
 import { IObjGame } from './models/IObjGame';
 import { Container } from './components/Container';
 
-let xPlay:boolean = true  
-let winner:string = "" 
-let result:string = ""
+let xPlay = true  
+let winner = "" 
+let result = ""
 
 function App() {
   let objGame: IObjGame = { g1: "", g2: "", g3: "", g4: "", g5: "", g6: "", g7: "", g8: "", g9: "" }
 
   const [gameState, setGameState] = useState <IObjGame> (objGame)
-  const [classNameResult, setClassNameResult] = useState <string> ("areaHidden")
+  const [classNameResult, setClassNameResult] = useState ("areaHidden")
   
-  let won: boolean = 
+  let won = 
     gameState.g1 === gameState.g2 && gameState.g1 === gameState.g3 && ((gameState.g1 && gameState.g2 && gameState.g3) !== "") ||
     gameState.g4 === gameState.g5 && gameState.g4 === gameState.g6 && ((gameState.g4 && gameState.g5 && gameState.g6) !== "") ||
     gameState.g7 === gameState.g8 && gameState.g7 === gameState.g9 && ((gameState.g7 && gameState.g8 && gameState.g9) !== "") ||
@@ -24,13 +24,13 @@ function App() {
     gameState.g1 === gameState.g5 && gameState.g1 === gameState.g9 && ((gameState.g1 && gameState.g5 && gameState.g9) !== "") ||
     gameState.g3 === gameState.g5 && gameState.g3 === gameState.g7 && ((gameState.g3 && gameState.g5 && gameState.g7) !== "")
 
-  let tie: boolean = gameState.g1 !=="" && gameState.g2 !=="" && gameState.g3 !=="" &&
+  let tie = gameState.g1 !=="" && gameState.g2 !=="" && gameState.g3 !=="" &&
                      gameState.g4 !=="" && gameState.g5 !=="" && gameState.g6 !=="" &&
                      gameState.g7 !=="" && gameState.g8 !=="" && gameState.g9 !=="" && 
                      won === false
 
-  function xOrBow (event:any) {
-    let key:string = event.target.id
+  function xOrBow (event: React.MouseEvent<HTMLButtonElement>) {
+    let key:string = event.currentTarget.id
     
     if (xPlay  && gameState[key] === "" && !won) {
       setGameState({ ...gameState, [key]: "X" })

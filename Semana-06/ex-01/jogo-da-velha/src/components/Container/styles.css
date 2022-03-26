@@ -5,12 +5,13 @@
     align-items: center;
     background-color: rgb(242, 248, 248);
     box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.171);
-    padding: 40px;
+    padding: 10% 0;
     position: relative;
-    max-width: 400px;
+    max-width: 90%;
+    width: 400px;
     min-width: 200px;
-    margin: 0 auto;
     color: rgb(71, 77, 94);
+    margin: 0 auto;
   }
   
   .container h2 {
