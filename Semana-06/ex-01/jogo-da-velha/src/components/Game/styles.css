@@ -1,25 +1,26 @@
 .game {
     position: relative;
+    max-width: 90%;
+    min-width: 100px;
 }
 
 .line {
+    min-width: 100px;
     max-width: 100%;
-    width: 240px;
     border: 1px solid rgb(124, 118, 118);
 }
 
-.column1, .column2 {
+.columnBox {
     position: absolute;
-    top: 0px;
+    max-height: 100%;
+    height: 240px;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.column1, .column2 {
     max-height: 100%;
     height: 240px;
     border: 1px solid  rgb(124, 118, 118);
-}
-
-.column1 {
-    right: 80px;
-}
-
-.column2 {
-    right: 160px;
 }

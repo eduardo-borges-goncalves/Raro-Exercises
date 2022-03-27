@@ -11,9 +11,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-image: linear-gradient(to left,   rgb(17, 184, 230) , rgb(6, 240, 209), rgb(17, 184, 230)) ;
-
-  
-  padding: 5% 0%;
+  padding: 5% 5%;
 }
 
 .areaHidden {

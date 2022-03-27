@@ -5,10 +5,9 @@
     align-items: center;
     background-color: rgb(242, 248, 248);
     box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.171);
-    padding: 10% 0;
-    position: relative;
+    padding: 20px 10px 40px;
     max-width: 90%;
-    width: 400px;
+    width: 380px;
     min-width: 200px;
     color: rgb(71, 77, 94);
     margin: 0 auto;

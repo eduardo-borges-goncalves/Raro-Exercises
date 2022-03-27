@@ -8,6 +8,7 @@ p {
     color:rgb(49, 68, 161);
     font-weight: bold;
     font-size: 22px;
+    z-index: 2;
 }
 
 .gameRow {

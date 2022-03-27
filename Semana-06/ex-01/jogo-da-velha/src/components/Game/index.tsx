@@ -5,13 +5,19 @@ import { GameElement } from "../GameElement"
 
 import "./styles.css"
 
+// basta por space-around, deve ficar equilibrado,
+// como jogar por cima z-index?
+
 export const Game:FC <IProps> = (props) =>{
     return (
         <>
             <h2>Jogo da Old Lady</h2>
             <div className='game'>
-                <div className='column1'></div>
-                <div className='column2'></div>
+                <div className="columnBox">
+                    <div className='column1'></div>
+                    <div className='column2'></div>
+                </div>
+                
                 <GameElement 
                     gameState={props.gameState} 
                     xOrBow={props.xOrBow}
