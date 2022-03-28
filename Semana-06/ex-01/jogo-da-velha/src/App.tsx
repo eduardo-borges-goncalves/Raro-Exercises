@@ -30,14 +30,13 @@ function App() {
             gameState.g7 !=="" && gameState.g8 !=="" && gameState.g9 !=="" && 
             won === false
 
-  function xOrBow (event: React.MouseEvent<HTMLButtonElement>) {
-    let key:string = event.currentTarget.id
+  function xOrBow (key: string) {
     
     if (xPlay  && gameState[key] === "" && !won) {
       setGameState({ ...gameState, [key]: "X" })
       xPlay = false
       xWin = true
-    } else if ( gameState[key] === "" && !won ) {
+    } else if (!xPlay && gameState[key] === "" && !won ) {
       setGameState({ ...gameState, [key]: "O" })
       xPlay = true
       xWin = false

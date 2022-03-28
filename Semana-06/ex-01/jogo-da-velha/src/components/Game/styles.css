@@ -24,3 +24,8 @@
     height: 240px;
     border: 1px solid  rgb(124, 118, 118);
 }
+
+.gameRow {
+    display: flex;
+}
+
